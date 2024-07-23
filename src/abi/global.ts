@@ -71,13 +71,13 @@ export const GlobalFunctions: Map<string, AbiFunction> = new Map([
                 const arg1 = args[1]!;
                 if (arg0.kind !== "ref") {
                     throwCompilationError(
-                        "require() expects first Bool argument",
+                        "require() expects first bool argument",
                         ref,
                     );
                 }
                 if (arg0.name !== "Bool") {
                     throwCompilationError(
-                        "require() expects first Bool argument",
+                        "require() expects first bool argument",
                         ref,
                     );
                 }
@@ -155,14 +155,14 @@ export const GlobalFunctions: Map<string, AbiFunction> = new Map([
                 }
                 if (address.workChain !== 0 && address.workChain !== -1) {
                     throwCompilationError(
-                        `Address ${str} invalid address`,
+                        `Address ${str} is invalid address`,
                         ref,
                     );
                 }
                 if (!enabledMasterchain(ctx.ctx)) {
                     if (address.workChain !== 0) {
                         throwCompilationError(
-                            `Address ${str} from masterchain are not enabled for this contract`,
+                            `Address ${str} from masterchain is not enabled for this contract`,
                             ref,
                         );
                     }
@@ -228,7 +228,7 @@ export const GlobalFunctions: Map<string, AbiFunction> = new Map([
             name: "dump",
             resolve: (ctx, args, ref) => {
                 if (args.length !== 1) {
-                    throwCompilationError("dump expects 1 argument", ref);
+                    throwCompilationError("dump() expects one argument", ref);
                 }
                 return { kind: "void" };
             },
@@ -274,12 +274,12 @@ export const GlobalFunctions: Map<string, AbiFunction> = new Map([
                         return `${ctx.used(`__tact_debug`)}(${exp}, ${debugPrint2}, "${debugPrint1}")`;
                     }
                     throwCompilationError(
-                        "dump() not supported for type: " + arg0.name,
+                        "dump() is not supported for type: " + arg0.name,
                         ref,
                     );
                 } else {
                     throwCompilationError(
-                        "dump() not supported for argument",
+                        "dump() is not supported for argument",
                         ref,
                     );
                 }
@@ -293,7 +293,7 @@ export const GlobalFunctions: Map<string, AbiFunction> = new Map([
             resolve: (_ctx, args, ref) => {
                 if (args.length !== 0) {
                     throwCompilationError(
-                        "dumpStack expects no arguments",
+                        "dumpStack() expects no arguments",
                         ref,
                     );
                 }
@@ -318,7 +318,7 @@ export const GlobalFunctions: Map<string, AbiFunction> = new Map([
             name: "emptyMap",
             resolve: (ctx, args, ref) => {
                 if (args.length !== 0) {
-                    throwCompilationError("emptyMap expects no arguments", ref);
+                    throwCompilationError("emptyMap() expects no arguments", ref);
                 }
                 return { kind: "null" };
             },
@@ -333,18 +333,18 @@ export const GlobalFunctions: Map<string, AbiFunction> = new Map([
             name: "sha256",
             resolve: (ctx, args, ref) => {
                 if (args.length !== 1) {
-                    throwCompilationError("sha256 expects 1 argument", ref);
+                    throwCompilationError("sha256() expects one argument", ref);
                 }
                 const arg0 = args[0]!;
                 if (arg0.kind !== "ref") {
                     throwCompilationError(
-                        "sha256 expects string argument",
+                        "sha256() expects string argument",
                         ref,
                     );
                 }
                 if (arg0.name !== "String" && arg0.name !== "Slice") {
                     throwCompilationError(
-                        "sha256 expects string or slice argument",
+                        "sha256() expects string or slice argument",
                         ref,
                     );
                 }
@@ -352,12 +352,12 @@ export const GlobalFunctions: Map<string, AbiFunction> = new Map([
             },
             generate: (ctx, args, resolved, ref) => {
                 if (args.length !== 1) {
-                    throwCompilationError("sha256 expects 1 argument", ref);
+                    throwCompilationError("sha256() expects one argument", ref);
                 }
                 const arg0 = args[0]!;
                 if (arg0.kind !== "ref") {
                     throwCompilationError(
-                        "sha256 expects string argument",
+                        "sha256() expects string argument",
                         ref,
                     );
                 }
@@ -371,7 +371,7 @@ export const GlobalFunctions: Map<string, AbiFunction> = new Map([
                         ) as string;
                         if (Buffer.from(str).length > 128) {
                             throwCompilationError(
-                                "sha256 expects string argument with byte length <= 128",
+                                "sha256() expects string argument with byte length <= 128",
                                 ref,
                             );
                         }
@@ -392,7 +392,7 @@ export const GlobalFunctions: Map<string, AbiFunction> = new Map([
                 }
 
                 throwCompilationError(
-                    "sha256 expects string or slice argument",
+                    "sha256() expects string or slice argument",
                     ref,
                 );
             },
